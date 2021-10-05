@@ -49,6 +49,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->exists('token')){//当token存在时候 返回
+            return $this->prepareJsonResponse($request, $exception);
+        }
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Determine if the current request probably expects a JSON response.
+     *
+     * @return bool
+     */
+    public function expectsJson()
+    {
     }
 }

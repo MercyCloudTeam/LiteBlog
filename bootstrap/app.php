@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\RequestLimitMiddleware;
+use App\Http\Middleware\TokenValidateMiddleware;
 use Silber\PageCache\Middleware\CacheResponse;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -27,7 +29,7 @@ $app = new Laravel\Lumen\Application(
 
 // $app->withFacades();
 
-// $app->withEloquent();
+ $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,8 @@ $app->configure('app');
  $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
      'page-cache' => CacheResponse::class,
+     'token-validate' => TokenValidateMiddleware::class,
+     'request-limit' => RequestLimitMiddleware::class
  ]);
 
 /*
@@ -97,7 +101,11 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
- $app->register(Silber\PageCache\LaravelServiceProvider::class);
+//页面缓存
+$app->register(Silber\PageCache\LaravelServiceProvider::class);
+$app->bind('path.public', function () {
+    return '../public/';
+});
 
 /*
 |--------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class PostTest extends TestCase
 {
     /**
      * A basic test example.
@@ -17,5 +17,14 @@ class ExampleTest extends TestCase
         $this->assertEquals(
             $this->app->version(), $this->response->getContent()
         );
+    }
+
+    public function testCreatePost()
+    {
+
+    }
+
+    public function testEditPost(){
+
     }
 }
