@@ -13,11 +13,11 @@ class SyncPostsJob extends Job
     {
         //
     }
-//增量同步
+    //增量同步
 
-//全量同步
+    //全量同步
 
-//节点应记录国家 IP
+    //节点应记录国家 IP
 
     /**
      * Execute the job.

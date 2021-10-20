@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -50,17 +51,17 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($request->exists('token')){//当token存在时候 返回
-            return $this->prepareJsonResponse($request, $exception);
+            return new JsonResponse(
+                [
+                    'data'=>$this->convertExceptionToArray($exception),
+                    'msg'=>$exception->getMessage() ?? "Error",
+                    'status'=>false,
+                ],
+                $this->isHttpException($exception) ? $exception->getStatusCode() : 500,
+            );
         }
-        return parent::render($request, $exception);
+        return $this->prepareResponse($request, $exception);
+//        return parent::render($request, $exception);
     }
 
-    /**
-     * Determine if the current request probably expects a JSON response.
-     *
-     * @return bool
-     */
-    public function expectsJson()
-    {
-    }
 }

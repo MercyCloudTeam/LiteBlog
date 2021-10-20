@@ -3,10 +3,17 @@
 namespace App\Models;
 
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    use Cachable;
+
+    protected $fillable = [
+      'name'
+    ];
+
     /**
      * 获取被打上此标签的所有文章
      */

@@ -16,13 +16,17 @@ class CreatePostsTable extends Migration
         //文章
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title',100);
+            $table->string('title',100)->index()->unique();//标题唯一
+            $table->string('lang',10)->nullable()->default('zh_CN');
+            $table->bigInteger('pid')->nullable();//如果存在则算为一篇子文章
             $table->text('content');
             $table->bigInteger('author_id')->nullable();//作者
             $table->boolean('sync')->default(true);//是否同步
             $table->uuid('uuid');//唯一ID，允许不同站点文章ID不同
             $table->integer('status')->default(1);
             $table->json('config')->nullable();//针对文章的各种配置
+
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -70,7 +74,7 @@ class CreatePostsTable extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('email',100);//关联gv头像
-            $table->json('social');//社交联系方式
+            $table->json('social')->nullable();//社交联系方式
             $table->string('name',50);//名称
             $table->string('desc',150)->nullable();//描述
             $table->string('avatar',100)->nullable();//头像

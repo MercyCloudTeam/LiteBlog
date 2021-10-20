@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AuthorActionCommand;
+use App\Console\Commands\KeyGenerateCommand;
+use App\Console\Commands\TokenActionCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +16,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        AuthorActionCommand::class,
+        TokenActionCommand::class,
+        KeyGenerateCommand::class
     ];
 
     /**

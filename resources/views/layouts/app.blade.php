@@ -8,13 +8,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="/css/app.css" rel="stylesheet">
-    <script src="/js/app.js" defer></script>
+    <link href="{{url('/css/app.css')}}" rel="stylesheet">
+    <script src="{{url('/js/app.js')}}" defer></script>
 
     @yield('css')
 </head>
 <body>
-    @yield('content')
+
+@include('common.nav')
+@include('common.header')
+@include('common.topic-nav')
+
+@yield('content')
+
+@include('common.footer')
 </body>
 @yield('js')
 </html>

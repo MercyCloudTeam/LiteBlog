@@ -21,6 +21,8 @@ RewriteRule . page-cache%{REQUEST_URI}.xml [L]
 
 ~~~
 
+https://github.com/creativetimofficial/tailwind-starter-kit
+
 一个轻博客
 
 没有管理页面，用户系统，只有使用Token认证的API
@@ -45,3 +47,8 @@ API操作
 SEO友好
 
 支持分类、文章TAG
+
+
+地区区分
+
+使用geoip判断 ，中国地区IP不显示及提供评论系统

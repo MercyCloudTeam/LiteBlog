@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Middleware\CacheResponse;
 use App\Http\Middleware\RequestLimitMiddleware;
 use App\Http\Middleware\TokenValidateMiddleware;
-use Silber\PageCache\Middleware\CacheResponse;
+use App\Providers\LiteBlogServiceProvider;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -27,7 +28,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
  $app->withEloquent();
 
@@ -64,6 +65,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('laravel-model-caching');
+$app->configure('liteblog');
 
 /*
 |--------------------------------------------------------------------------
@@ -103,9 +106,20 @@ $app->configure('app');
 // $app->register(App\Providers\EventServiceProvider::class);
 //页面缓存
 $app->register(Silber\PageCache\LaravelServiceProvider::class);
+//模型缓存
+$app->register(GeneaLabs\LaravelModelCaching\Providers\Service::class);
+
+//LiteBlog服务提供者(配置注册)
+$app->register(LiteBlogServiceProvider::class);
+
+//页面缓存(Silber\PageCache\LaravelServiceProvider::class)项目在Lumen中使用未配置下面会出错
 $app->bind('path.public', function () {
     return '../public/';
 });
+
+//注册配置到全局变量
+$configs = config('liteblog');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -123,5 +137,13 @@ $app->router->group([
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
+
+$app->router->group([
+    'namespace' => 'App\Http\Controllers',
+    'prefix'=>'api'
+], function ($router) {
+    require __DIR__.'/../routes/api.php';
+});
+
 
 return $app;

@@ -3,11 +3,20 @@
 namespace App\Models;
 
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-    public $fileable = [
-        'token','author_id'
+
+    use Cachable;
+
+    protected $fillable = [
+        'token','author_id','permissions'
     ];
+
+    public function author()
+    {
+        return $this->hasOne('App\Models\Author','id','author_id');
+    }
 }

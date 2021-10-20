@@ -17,10 +17,12 @@ class BlogController extends Controller
         //
     }
 
+
     public function index()
     {
-//        return view('index');
-
+//        ->with(['category','tags'])
+        $posts = Post::latest()->paginate(9);
+        return view('index',compact('posts'));
     }
 
     /**
@@ -40,7 +42,7 @@ class BlogController extends Controller
 
     public function posts(Post $post)
     {
-        return view('posts');
+        return view('posts',compact('post'));
     }
     //
 }
