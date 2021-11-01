@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-
     use Cachable;
+
+    protected $cacheCooldownSeconds = 1800; // 30 minutes]
 
     protected $fillable = [
         'token','author_id','permissions'

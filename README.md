@@ -21,7 +21,6 @@ RewriteRule . page-cache%{REQUEST_URI}.xml [L]
 
 ~~~
 
-https://github.com/creativetimofficial/tailwind-starter-kit
 
 一个轻博客
 
@@ -36,11 +35,9 @@ https://github.com/creativetimofficial/tailwind-starter-kit
 
 支持 Markdown
 
-支持 Cloudflare
-
 API操作
 
-站点之间自动同步
+站点之间自动同步 
 
 生成静态文件
 
@@ -52,3 +49,18 @@ SEO友好
 地区区分
 
 使用geoip判断 ，中国地区IP不显示及提供评论系统
+
+感谢
+
+Tailwind CSS
+
+daisyUI 
+
+
+文章操作方法
+
+Token令牌API操作
+
+本地Markdown文件导入
+
+Cli命令添加修改文章 

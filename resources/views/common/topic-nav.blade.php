@@ -10,10 +10,10 @@
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">首页</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">分类</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Tags</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">友情链接</a>
+            <a href="{{url()}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">首页</a>
+            <a href="{{route('categories')}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">分类</a>
+            <a href="{{route('tags')}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Tags</a>
+            <a href="{{route('links')}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">友情链接</a>
         </div>
     </div>
 </nav>

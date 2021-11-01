@@ -11,7 +11,7 @@ class Category extends Model
 {
     use Cachable;
 
-    public $fileable = [
+    protected $fillable = [
         'name','desc','pid'
     ];
 

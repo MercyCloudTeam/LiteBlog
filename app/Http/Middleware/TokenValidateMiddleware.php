@@ -29,9 +29,9 @@ class TokenValidateMiddleware
         }
 
         //正常情况的验证令牌流程
-        if ($request->exists('token') && strlen($request) == 64){
-            $token = Token::where('token',$request['token'])->get();
-            if ($token->isEmpty()){//没找到密钥
+        if ($request->exists('token')){
+            $token = Token::where('token',$request['token'])->first();
+            if (empty($token)){//没找到密钥
                 return response()->json(['data'=>[],'status'=>false,'msg'=>'令牌错误'],403);
             }
 

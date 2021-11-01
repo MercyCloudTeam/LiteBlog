@@ -37,7 +37,7 @@ class TokenActionCommand extends Command
      *
      * @var string
      */
-    protected $description = "创建一个TOKEN ";
+    protected $description = "Token操作(create edit delete show) ";
 
 
     /**

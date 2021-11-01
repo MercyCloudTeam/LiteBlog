@@ -17,12 +17,13 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title',100)->index()->unique();//标题唯一
+            $table->string('subtitle',200)->index();//副标题
             $table->string('lang',10)->nullable()->default('zh_CN');
             $table->bigInteger('pid')->nullable();//如果存在则算为一篇子文章
             $table->text('content');
             $table->bigInteger('author_id')->nullable();//作者
             $table->boolean('sync')->default(true);//是否同步
-            $table->uuid('uuid');//唯一ID，允许不同站点文章ID不同
+            $table->uuid('uuid')->index()->unique();//唯一ID，允许不同站点文章ID不同
             $table->integer('status')->default(1);
             $table->json('config')->nullable();//针对文章的各种配置
 

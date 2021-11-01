@@ -23,8 +23,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->unique()->title,
+            'title' => $this->faker->unique()->text(50),
             'content' => $this->faker->unique()->text,
+            'subtitle' => $this->faker->unique()->text(100),
             'uuid'=>Str::uuid(),
         ];
     }

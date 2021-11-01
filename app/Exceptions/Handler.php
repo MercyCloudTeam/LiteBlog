@@ -50,6 +50,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        //API返回
         if ($request->exists('token')){//当token存在时候 返回
             return new JsonResponse(
                 [
@@ -60,8 +61,19 @@ class Handler extends ExceptionHandler
                 $this->isHttpException($exception) ? $exception->getStatusCode() : 500,
             );
         }
-        return $this->prepareResponse($request, $exception);
-//        return parent::render($request, $exception);
+        //常规返回
+        if ($exception instanceof HttpException) {
+            $status = $exception->getStatusCode();
+            if (view()->exists("errors.$status")) {
+                return response(view("errors.$status"), $status);
+            }
+        }
+        if (env('APP_DEBUG')) {
+//            return parent::render($request, $exception);
+            return $this->prepareResponse($request, $exception);
+        } else {
+            return response(view("errors.500"), 500);
+        }
     }
 
 }

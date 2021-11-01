@@ -114,13 +114,15 @@ $app->register(LiteBlogServiceProvider::class);
 
 //页面缓存(Silber\PageCache\LaravelServiceProvider::class)项目在Lumen中使用未配置下面会出错
 $app->bind('path.public', function () {
-    return '../public/';
+//    return '../public' ;
+    return base_path('public');
 });
 
 //注册配置到全局变量
 $configs = config('liteblog');
 
-
+//头像
+$app->register(Laravolt\Avatar\LumenServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -137,13 +139,5 @@ $app->router->group([
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
-
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-    'prefix'=>'api'
-], function ($router) {
-    require __DIR__.'/../routes/api.php';
-});
-
 
 return $app;

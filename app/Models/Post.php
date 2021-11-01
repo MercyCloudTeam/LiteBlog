@@ -14,12 +14,14 @@ class Post extends Model
 {
     use Cachable,HasFactory,SoftDeletes;
 
+    protected $cacheCooldownSeconds = 1800; // 30 minutes
+
     protected $casts = [
         'config'=>'json'
     ];
 
-    public $fileable = [
-        'title','lang','pid','content','author_id','sync','uuid','status','config'
+    protected $fillable = [
+        'title','lang','pid','content','subtitle','author_id','sync','uuid','status','config'
     ];
 
     public function tags(): MorphToMany
@@ -30,5 +32,10 @@ class Post extends Model
     public function category(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Category');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\Author','author_id','id');
     }
 }

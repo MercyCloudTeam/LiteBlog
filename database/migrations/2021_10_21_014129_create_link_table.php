@@ -27,7 +27,7 @@ class CreateLinkTable extends Migration
         //短链
         Schema::create('shore_links',function (Blueprint $table){
             $table->string('code')->index()->unique();
-            $table->string('url',100);
+            $table->string('url',150)->index();//索引
         });
     }
 

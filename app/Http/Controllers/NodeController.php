@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
+
 class NodeController extends Controller
 {
     /**
@@ -13,6 +15,23 @@ class NodeController extends Controller
     {
         //
     }
+
+    public function syncWordpressPosts(string $content)
+    {
+        $endpoint = "";
+
+    }
+
+    public function syncPosts()
+    {
+        $type = '';
+        $content = Http::get('');
+        switch ($type){
+            case "wordpress":
+                $this->syncWordpressPosts($content);
+        }
+    }
+
 
     //
 }

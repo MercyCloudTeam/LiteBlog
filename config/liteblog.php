@@ -5,6 +5,9 @@ return [
     'wa'=>env('LITEBLOG_WA'),//网安备案号
     'wa_url'=>env('LITEBLOG_WA_URL'),//网安备案号
     'ip_check'=>env('LITEBLOG_IP_CHECK',true),//GEOIP检测地区
+    'ip_info_display'=>env('LITEBLOG_IP_INFO_DISPLAY',false),//是否显示IP信息给用户看
+    'ip_mmdb_file'=>env('LITEBLOG_IP_MMDB_FILE',storage_path('app/ip.db')),
+
     'china_comment'=>env('LITEBLOG_CHINA_COMMENT',true),//中国地区屏蔽评论系统
 
     'comment'=>env('LITEBLOG_COMMENT',true),//评论系统
@@ -14,6 +17,7 @@ return [
     'cn_user_use_mirror'=>env('LITEBLOG_CN_USER_USE_MIRROR'),//为中国用户引入前端资源时自动使用国内镜像
 
     'index_title'=>env('LITEBLOG_INDEX_TITLE',env('APP_NAME')),//网站首页标题
+    'index_subtitle'=>env('LITEBLOG_INDEX_SUBTITLE'),//网站首页描述
     'index_description'=>env('LITEBLOG_INDEX_SUBTITLE'),//网站首页描述
 
     'index_seo_title'=>env('LITEBLOG_INDEX_SEO_TITLE',env('LITEBLOG_INDEX_TITLE')),//网站首页标题
@@ -37,6 +41,9 @@ return [
     'ad_index_posts_img'=>env('LITEBLOG_AD_INDEX_POSTS_IMG'),
     'ad_index_posts_title'=>env('LITEBLOG_AD_INDEX_POSTS_TITLE'),
     'ad_index_posts_desc'=>env('LITEBLOG_AD_INDEX_POSTS_DESC'),
+
+    //节点管理
+    'node_county'=>env('LITEBLOG_NODE_COUNTY'),
 
     //Theme Configure
     'theme_nav_bg_color'=>env('THEME_NAV_BG_COLOR','bg-blue-800'),//网站首页关键词

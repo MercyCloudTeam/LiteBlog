@@ -15,7 +15,7 @@
 </head>
 <body>
 
-@include('common.nav')
+{{--@include('common.nav')--}}
 @include('common.header')
 @include('common.topic-nav')
 

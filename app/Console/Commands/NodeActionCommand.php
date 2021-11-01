@@ -37,7 +37,7 @@ class NodeActionCommand extends Command
      *
      * @var string
      */
-    protected $description = "节点系统(register show)";
+    protected $description = "节点系统(register show sync)";
 
 
     /**
@@ -52,7 +52,7 @@ class NodeActionCommand extends Command
             case 'show';
 
             default:
-                $this->error('操作只支持create edit delete show');
+                $this->error('操作只支持register show sync');
         }
 
     }

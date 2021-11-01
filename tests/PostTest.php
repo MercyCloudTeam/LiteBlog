@@ -7,27 +7,29 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class PostTest extends TestCase
 {
-    use DatabaseTransactions;
+//    use DatabaseTransactions;
 
     public function testCreatePost()
     {
+        $title = 'Create Test '.time();
         $this->json('POST', '/api/posts',
             [
-                'title' => 'Create Test',
+                'title' => $title,
                 'token'=> "DEV",
                 'content'=>'TEST Content'
             ]
-        )->seeJson(['status'=>true])->seeInDatabase('posts', ['title' => 'Create Test']);
+        )->seeJson(['status'=>true])->seeInDatabase('posts', ['title' => $title]);
     }
 
     public function testEditPost(){
         $post = Post::factory()->create();
+        $title =  'Edit Test '.time();
         $this->json('POST', "/api/posts/$post->id",
             [
-                'title' => 'Edit Test',
+                'title' =>$title,
                 'token'=> "DEV",
                 'content'=>'Edit Content'
             ]
-        )->seeJson(['status'=>true])->seeInDatabase('posts', ['title' => 'Edit Test']);
+        )->seeJson(['status'=>true])->seeInDatabase('posts', ['title' => $title]);
     }
 }
