@@ -1,4 +1,51 @@
+# LiteBlog
+
+
+
+### 简介
+
+一个轻博客
+
+**没有**管理页面，用户系统，只有使用Token认证的API
+
+**没有**任何插件系统 模板系统（**功能简陋**）
+
+
+每个站点会维护一份其他站点的列表 TODO
+
+### 特点
+
+支持 Markdown
+
+API操作
+
+站点之间自动同步 *TODO*
+
+生成静态文件
+
+SEO友好
+
+支持分类、文章TAG  *TODO*
+
+
+地区区分 *TODO*
+
+使用geoip判断 ，中国地区IP不显示及提供评论系统 *TODO*
+
+
+
+### 文章操作方法
+
+Token令牌API操作
+
+本地Markdown文件导入  *TODO*
+
+
+
+### 伪静态
+
 ~~~
+#NGINX 伪静态
 
 location = / {
     try_files /page-cache/pc__index__pc.html /index.php?$query_string;
@@ -7,6 +54,8 @@ location = / {
 location / {
     try_files $uri $uri/ /page-cache/$uri.html /page-cache/$uri.json /page-cache/$uri.xml /index.php?$query_string;
 }
+
+#Apache 伪静态
 
 # Serve Cached Page If Available...
 RewriteCond %{REQUEST_URI} ^/?$
@@ -22,45 +71,24 @@ RewriteRule . page-cache%{REQUEST_URI}.xml [L]
 ~~~
 
 
-一个轻博客
 
-没有管理页面，用户系统，只有使用Token认证的API
+### 感谢
 
-没有任何插件系统 模板系统（功能简陋）
+erusev/parsedown
 
+genealabs/laravel-model-caching
 
-每个站点会维护一份其他站点的列表
+geoip2/geoip2
 
-特点
+laravel/lumen-framework
 
-支持 Markdown
+laravolt/avatar
 
-API操作
+league/html-to-markdown
 
-站点之间自动同步 
-
-生成静态文件
-
-SEO友好
-
-支持分类、文章TAG
-
-
-地区区分
-
-使用geoip判断 ，中国地区IP不显示及提供评论系统
-
-感谢
+silber/page-cache
 
 Tailwind CSS
 
-daisyUI 
+daisyUI
 
-
-文章操作方法
-
-Token令牌API操作
-
-本地Markdown文件导入
-
-Cli命令添加修改文章 
