@@ -34,8 +34,7 @@ class TokenValidateMiddleware
             if (empty($token)){//没找到密钥
                 return response()->json(['data'=>[],'status'=>false,'msg'=>'令牌错误'],403);
             }
-
-            if ($token->author){//如果作者不为空 绑定作者
+            if ($token->author){//如果作者不为空 绑定作者   
                 $author_encrypt = Crypt::encryptString($token->author_id);
                 $request->attributes->add(['author_encrypt'=>$author_encrypt]);
             }

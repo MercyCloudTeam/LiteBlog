@@ -48,6 +48,9 @@ $router->group(['middleware'=>['token-validate'],'prefix'=>'/api'],function ()us
         $router->post('/','PostsController@store');
         $router->delete('/{post}','PostsController@delete');
     });
+    $router->group(['prefix'=>'/file'],function ()use($router){
+        $router->post('/upload','FileController@upload');
+    });
 });
 
 //$router->get('/ip',['']);

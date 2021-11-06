@@ -29,6 +29,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->command('page-cache:clear')->daily();//每天自动清理缓存
     }
 }

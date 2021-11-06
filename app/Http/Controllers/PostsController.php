@@ -18,16 +18,24 @@ class PostsController extends Controller
     public function show(Request $request)
     {
         //todo 时间条件 返回条件
-        return $this->apiResult(['type'=>'liteblog','list'=>Post::where('sync',true)->get()->toArray()]);
+        $perPage = $request->perPage ?? 50;
+        // return $this->apiResult(['type'=>'liteblog','list'=>Post::where('sync',true)->get()->toArray()]);
+        return $this->apiResult(['type'=>'liteblog','paginate'=>Post::paginate($perPage)]);
     }
 
     public function markdownToPosts(string $text,string $title)
     {
         $parsedown = new Parsedown();
         $content = $parsedown->text($text);//获取文章全文
-//        Post::create([
-//            'title'=>$title;
-//        ])
+    }
+
+    public function download(string $post)
+    {
+        $post = Post::find($post);
+        if (empty($post)){
+            return $this->apiResult([],false,'文章不存在');
+        }
+        return ;
     }
 
     public function search(Request $request)
@@ -36,10 +44,7 @@ class PostsController extends Controller
         $this->validate($request,[
             'search'=>'string|max:50|min:1',
         ]);
-
-
     }
-
 
     // TODO tag分析(将内容出现tag词汇的替换进a标签)
     public function tagToContent()
@@ -81,6 +86,16 @@ class PostsController extends Controller
             return $this->apiResult([],false,'文章不存在');
         }
         return $this->updateOrStore($request,$post);
+    }
+
+
+    public function detail(Request $request,string $post)
+    {
+        $post = Post::find($post);
+        if (empty($post)){
+            return $this->apiResult([],false,'文章不存在');
+        }
+        return $this->apiResult($post->toArray());
     }
 
     /**

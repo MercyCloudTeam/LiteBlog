@@ -12,6 +12,7 @@ use Illuminate\View\View;
 use Laravel\Lumen\Application;
 use Laravel\Lumen\Http\Redirector;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Parsedown;
 
 class BlogController extends Controller
 {
@@ -89,6 +90,8 @@ class BlogController extends Controller
      */
     public function posts(Post $post)
     {
+        $parsedown = new Parsedown();
+        $post->content = $parsedown->text($post->content);
         return view('posts',compact('post'));
     }
 

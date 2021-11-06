@@ -18,7 +18,7 @@ return [
 
     'index_title'=>env('LITEBLOG_INDEX_TITLE',env('APP_NAME')),//网站首页标题
     'index_subtitle'=>env('LITEBLOG_INDEX_SUBTITLE'),//网站首页描述
-    'index_description'=>env('LITEBLOG_INDEX_SUBTITLE'),//网站首页描述
+    'index_description'=>env('LITEBLOG_INDEX_DESCRIPTION'),//网站首页描述
 
     'index_seo_title'=>env('LITEBLOG_INDEX_SEO_TITLE',env('LITEBLOG_INDEX_TITLE')),//网站首页标题
     'index_seo_description'=>env('LITEBLOG_INDEX_SEO_DESCRIPTION',env('LITEBLOG_INDEX_SUBTITLE')),//网站首页副标题 SEO

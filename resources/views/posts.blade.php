@@ -23,7 +23,7 @@
 
         <!-- Post Section -->
         <section class="w-full card md:w-2/3 flex flex-col items-center px-8">
-            <article class="flex w-full flex-col shadow-xl my-4">
+            <article class="prose  flex w-full flex-col shadow-xl my-4">
                 <!-- Article Image -->
                 <a href="#" class="hover:opacity-75">
                     <img src="">

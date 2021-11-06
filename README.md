@@ -92,3 +92,4 @@ Tailwind CSS
 
 daisyUI
 
+Typora
